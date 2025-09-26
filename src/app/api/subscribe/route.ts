@@ -3,7 +3,6 @@ import {
   BeehiivConfig,
   BeehiivSubscriptionRequest,
   BeehiivSubscriptionResponse,
-  BeehiivAutomationEnrollmentRequest,
   BeehiivAutomationEnrollmentResponse,
   SubscriptionResult,
   WaitlistSubscriptionData,
