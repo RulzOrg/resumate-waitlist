@@ -133,9 +133,39 @@ Based on the provided design, the landing page includes:
 - Realistic expectations about job guarantees
 - User avatar social proof
 
-## 🔗 Integration Recommendations
+## 🔗 Beehiiv Integration (Implemented)
 
-- **Email Service**: ConvertKit, Mailchimp, or Beehiiv for signup management
+**✅ Email Marketing Automation**
+- **Service**: Beehiiv API integration for professional email marketing
+- **Automation**: 5-email nurture sequence for waitlist subscribers
+- **Personalization**: First name collection and segmentation capabilities
+- **Analytics**: Built-in Beehiiv analytics for email performance tracking
+
+### Setup Instructions
+
+1. **Environment Configuration**
+   ```bash
+   # Copy the example file
+   cp .env.example .env.local
+
+   # Add your Beehiiv credentials
+   BEEHIIV_API_KEY=your_api_key_here
+   BEEHIIV_PUBLICATION_ID=pub_your_publication_id_here
+   BEEHIIV_AUTOMATION_ID=aut_your_automation_id_here  # Optional
+   ```
+
+2. **Beehiiv Dashboard Setup**
+   - Create automation: "ResuMate AI Waitlist Sequence"
+   - Design 5-email nurture sequence (welcome, education, updates, launch)
+   - Copy automation ID from URL: `app.beehiiv.com/automations/[ID]`
+
+3. **Testing**
+   - Submit test email through waitlist form
+   - Verify subscriber appears in Beehiiv dashboard
+   - Check automation enrollment and email delivery
+
+## 📊 Additional Integrations
+
 - **Analytics**: Google Analytics or Plausible for conversion tracking
 - **SEO**: Optimize for "resume builder", "ATS optimization", "AI resume" keywords
 - **Performance**: Aim for <2s load times on mobile
@@ -155,18 +185,27 @@ This Next.js application can be deployed to any platform that supports Node.js a
 ```
 src/
 ├── app/
-│   ├── layout.tsx      # Root layout with fonts, metadata, and SEO
-│   ├── page.tsx        # Homepage routing to LandingPage component
-│   └── globals.css     # Global styles with font utilities
+│   ├── api/
+│   │   └── subscribe/
+│   │       └── route.ts    # Beehiiv API integration endpoint
+│   ├── layout.tsx          # Root layout with fonts, metadata, and SEO
+│   ├── page.tsx            # Homepage routing to LandingPage component
+│   └── globals.css         # Global styles with font utilities
 ├── components/
-│   └── LandingPage.tsx # Main waitlist landing page component
-public/                 # Static assets (images, icons, placeholders)
+│   └── LandingPage.tsx     # Main waitlist landing page with Beehiiv integration
+├── lib/
+│   └── beehiiv-types.ts    # TypeScript definitions for Beehiiv API
+.env.example                # Environment variables template
+.env.local                  # Local development environment variables
+public/                     # Static assets (images, icons, placeholders)
 ```
 
 ### Key Files
-- **`layout.tsx`**: Comprehensive SEO setup with Open Graph and Twitter meta tags
-- **`LandingPage.tsx`**: Complete waitlist page with form handling and FAQ accordion
-- **`globals.css`**: Dark theme implementation with font utility classes
+- **`api/subscribe/route.ts`**: Beehiiv API integration with error handling and automation enrollment
+- **`lib/beehiiv-types.ts`**: Comprehensive TypeScript definitions for type safety
+- **`LandingPage.tsx`**: Waitlist forms integrated with Beehiiv API calls
+- **`layout.tsx`**: SEO setup with Open Graph and Twitter meta tags
+- **`.env.example`**: Template for required Beehiiv environment variables
 
 ## 🎯 Marketing & Conversion Features
 

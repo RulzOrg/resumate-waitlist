@@ -62,8 +62,23 @@ This waitlist page should include:
 - **Feature Preview**: Teasers of main product capabilities
 - **Launch Timeline**: Expected release date or development updates
 
-### Integration Considerations
-- **Email Service**: Consider integrating with services like ConvertKit, Mailchimp, or Beehiiv for email collection
+### Beehiiv Integration (Implemented)
+**✅ Email Marketing System**
+- **API Integration**: `/src/app/api/subscribe/route.ts` - Full Beehiiv API integration
+- **Type Safety**: `/src/lib/beehiiv-types.ts` - Comprehensive TypeScript definitions
+- **Form Integration**: Both hero and secondary forms connect to Beehiiv API
+- **Automation**: Automatic enrollment in "ResuMate AI Waitlist Sequence"
+- **Error Handling**: Graceful fallbacks and user-friendly error messages
+- **Rate Limiting**: Built-in protection against abuse
+
+**Environment Configuration Required**:
+```
+BEEHIIV_API_KEY=your_api_key
+BEEHIIV_PUBLICATION_ID=pub_xxxxx
+BEEHIIV_AUTOMATION_ID=aut_xxxxx  # Optional
+```
+
+### Additional Integration Considerations
 - **Analytics**: Track signup conversion rates and user engagement
 - **SEO**: Optimize for resume-related keywords and job seeker search terms
 - **Mobile-First**: Ensure responsive design for mobile job seekers
@@ -94,3 +109,61 @@ When working on this project:
 3. **Features Preview**: AI optimization, ATS scanning, job matching
 4. **Early Access**: Exclusive waitlist benefits
 5. **Footer**: Social links, contact info
+
+## Beehiiv Email Automation Sequence
+
+### Recommended 5-Email Sequence for ResuMate AI:
+
+**Email 1: Welcome + Value (Immediate)**
+- Subject: "Welcome to ResuMate AI Early Access! 🚀"
+- Content: Welcome message, explain what ResuMate AI does, set expectations
+- Include: Early access benefits, timeline expectations
+
+**Email 2: Problem Education (Day +3)**
+- Subject: "Why 95% of resumes get rejected by ATS systems"
+- Content: Educate about ATS problems, generic resume issues
+- Position ResuMate AI as the solution
+
+**Email 3: AI Advantage (Day +7)**
+- Subject: "How AI will transform your job search in 2025"
+- Content: Benefits of AI-powered resume optimization
+- Share success stories or case studies
+
+**Email 4: Early Access Update (Day +14)**
+- Subject: "ResuMate AI Beta Update + Timeline"
+- Content: Development progress, beta timeline, exclusive features
+- Build anticipation for launch
+
+**Email 5: Pre-Launch (Day +21)**
+- Subject: "Get your current resume ready for ResuMate AI"
+- Content: Tips to prepare their existing resume, what formats we accept
+- Final anticipation building before beta launch
+
+### Setup Instructions:
+1. Create automation in Beehiiv dashboard named "ResuMate AI Waitlist Sequence"
+2. Design emails with ResuMate AI branding and messaging
+3. Set triggers and delays between emails
+4. Copy automation ID to environment variables
+
+## Testing & Monitoring
+
+### Testing Checklist:
+- [ ] Environment variables configured correctly
+- [ ] Test email submission through both forms (hero + secondary)
+- [ ] Verify subscriber appears in Beehiiv dashboard
+- [ ] Check automation enrollment success
+- [ ] Test error handling (invalid emails, network issues)
+- [ ] Verify fallback localStorage behavior in development
+- [ ] Test rate limiting functionality
+
+### Monitoring & Analytics:
+- **Beehiiv Dashboard**: Monitor subscriber growth, email open rates, automation performance
+- **Browser Console**: Check for API errors and integration issues in development
+- **Local Storage**: Backup data available for development/debugging
+- **Rate Limiting**: Built-in protection logs abuse attempts
+
+### Common Issues:
+- **"Environment variable missing"**: Check .env.local file has all required variables
+- **"API key invalid"**: Verify Beehiiv API key has correct permissions
+- **"Automation not found"**: Ensure automation is published and ID is correct
+- **"Network errors"**: Check Beehiiv service status and internet connection

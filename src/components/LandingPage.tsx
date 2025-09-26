@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { FormEvent, ReactNode, useState } from "react";
+import { FormEvent, ReactNode, useEffect, useState } from "react";
+import { SubscriptionResult } from "@/lib/beehiiv-types";
 
 type MessageState = { type: "success" | "error"; text: string } | null;
 
@@ -16,6 +17,13 @@ interface WaitlistFormProps {
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const waitlistStorageKey = "resumate_waitlist";
+
+const navLinks = [
+  { href: "#how-it-works", label: "How It Works" },
+  { href: "#features", label: "Features" },
+  { href: "#waitlist", label: "Waitlist" },
+  { href: "#faq", label: "FAQ" },
+];
 
 const avatars = [
   { src: "/images/avatars/avatar-1.jpg", alt: "ResuMate early adopter 1" },
@@ -231,27 +239,83 @@ function WaitlistForm({
     setIsSubmitting(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 900));
+      // Call Beehiiv API through our backend
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email.trim(),
+          source: 'waitlist',
+          campaign: 'resumate-ai-waitlist',
+        }),
+      });
 
-      if (typeof window !== "undefined") {
+      const result: SubscriptionResult = await response.json();
+
+      if (result.success) {
+        setMessage({
+          type: "success",
+          text: result.message,
+        });
+        setEmail("");
+
+        // Optional: Still save to localStorage as backup for development
+        if (typeof window !== "undefined" && process.env.NODE_ENV === 'development') {
+          try {
+            const existing = window.localStorage.getItem(waitlistStorageKey);
+            const parsed = existing ? JSON.parse(existing) : [];
+            parsed.push({
+              email: email.trim(),
+              ts: Date.now(),
+              beehiiv_success: true,
+              subscriber_id: result.data?.subscriber_id
+            });
+            window.localStorage.setItem(waitlistStorageKey, JSON.stringify(parsed));
+          } catch (error) {
+            console.error("Local storage backup failed", error);
+          }
+        }
+      } else {
+        setMessage({
+          type: "error",
+          text: result.message || "Something went wrong. Please try again.",
+        });
+      }
+    } catch (error) {
+      console.error("Waitlist submission failed", error);
+
+      // Fallback to localStorage in development if API fails
+      if (typeof window !== "undefined" && process.env.NODE_ENV === 'development') {
         try {
           const existing = window.localStorage.getItem(waitlistStorageKey);
           const parsed = existing ? JSON.parse(existing) : [];
-          parsed.push({ email: email.trim(), ts: Date.now() });
+          parsed.push({
+            email: email.trim(),
+            ts: Date.now(),
+            beehiiv_success: false,
+            fallback: true
+          });
           window.localStorage.setItem(waitlistStorageKey, JSON.stringify(parsed));
-        } catch (error) {
-          console.error("Waitlist local storage write failed", error);
-        }
-      }
 
-      setMessage({
-        type: "success",
-        text: "You’re on the list! We’ll email you as soon as invites roll out.",
-      });
-      setEmail("");
-    } catch (error) {
-      console.error("Waitlist submission failed", error);
-      setMessage({ type: "error", text: "Something went wrong. Please try again." });
+          setMessage({
+            type: "success",
+            text: "You're on the list! We'll email you as soon as early access opens.",
+          });
+          setEmail("");
+        } catch (storageError) {
+          setMessage({
+            type: "error",
+            text: "Connection issue. Please try again in a moment."
+          });
+        }
+      } else {
+        setMessage({
+          type: "error",
+          text: "Connection issue. Please try again in a moment."
+        });
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -350,11 +414,27 @@ function WaitlistForm({
 
 export default function LandingPage() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const currentYear = new Date().getFullYear();
 
   const toggleFaq = (index: number) => {
     setOpenFaqIndex((prev) => (prev === index ? null : index));
   };
+
+  useEffect(() => {
+    if (!mobileMenuOpen) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [mobileMenuOpen]);
 
   return (
     <div id="top" className="relative overflow-hidden bg-black text-white">
@@ -397,31 +477,20 @@ export default function LandingPage() {
               </span>
             </a>
 
-            <div className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur md:flex">
-              <a
-                href="#how-it-works"
-                className="px-4 py-2 text-sm font-medium text-white/80 transition hover:text-white font-geist"
-              >
-                How It Works
-              </a>
-              <a
-                href="#features"
-                className="px-4 py-2 text-sm font-medium text-white/80 transition hover:text-white font-geist"
-              >
-                Features
-              </a>
-              <a
-                href="#waitlist"
-                className="px-4 py-2 text-sm font-medium text-white/80 transition hover:text-white font-geist"
-              >
-                Waitlist
-              </a>
-              <a
-                href="#faq"
-                className="px-4 py-2 text-sm font-medium text-white/80 transition hover:text-white font-geist"
-              >
-                FAQ
-              </a>
+            <div
+              className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur md:flex"
+              role="navigation"
+              aria-label="Primary"
+            >
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="px-4 py-2 text-sm font-medium text-white/80 transition hover:text-white font-geist"
+                >
+                  {link.label}
+                </a>
+              ))}
             </div>
 
             <a
@@ -434,7 +503,10 @@ export default function LandingPage() {
             <button
               type="button"
               className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium backdrop-blur font-geist md:hidden"
-              aria-label="Open menu"
+              aria-label={mobileMenuOpen ? "Close navigation" : "Open navigation"}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="primary-navigation"
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -444,16 +516,52 @@ export default function LandingPage() {
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="h-5 w-5"
+                className={`h-5 w-5 transition-transform ${mobileMenuOpen ? "rotate-90" : ""}`}
                 aria-hidden
               >
-                <line x1="4" y1="12" x2="20" y2="12" />
-                <line x1="4" y1="6" x2="20" y2="6" />
-                <line x1="4" y1="18" x2="20" y2="18" />
+                {mobileMenuOpen ? (
+                  <>
+                    <line x1="5" y1="5" x2="19" y2="19" />
+                    <line x1="19" y1="5" x2="5" y2="19" />
+                  </>
+                ) : (
+                  <>
+                    <line x1="4" y1="12" x2="20" y2="12" />
+                    <line x1="4" y1="6" x2="20" y2="6" />
+                    <line x1="4" y1="18" x2="20" y2="18" />
+                  </>
+                )}
               </svg>
-              Menu
+              <span>{mobileMenuOpen ? "Close" : "Menu"}</span>
             </button>
           </nav>
+
+          <div
+            id="primary-navigation"
+            className={`md:hidden ${mobileMenuOpen ? "mt-4" : "hidden"}`}
+          >
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 shadow-lg backdrop-blur">
+              <nav className="flex flex-col gap-2" aria-label="Primary mobile">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="rounded-xl px-3 py-2 text-sm font-medium text-white/80 transition hover:bg-white/10 hover:text-white font-geist"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+                <a
+                  href="#waitlist"
+                  className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 px-4 py-2 text-sm font-medium text-black transition hover:bg-emerald-400"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Join Waitlist
+                </a>
+              </nav>
+            </div>
+          </div>
 
           <section
             id="waitlist"
