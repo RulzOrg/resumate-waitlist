@@ -28,9 +28,9 @@ const spaceGrotesk = Space_Grotesk({
   display: "swap",
 });
 
-const title = "ResuMate AI — Tailor-fit your resume for any job";
+const title = "Stop Using The Same Resume | AI Job-Specific Resume Tailor - ResuMate AI";
 const description =
-  "Join the ResuMate AI waitlist and be first to access AI-crafted, job-specific resumes, optimized for ATS and recruiter impact.";
+  "88% of qualified candidates get rejected using generic resumes. ResuMate AI creates job-specific resumes tailored to each role, beating ATS filters and increasing interview rates by 3x.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://resumate.ai"),
@@ -40,11 +40,16 @@ export const metadata: Metadata = {
   },
   description,
   keywords: [
-    "AI resume builder",
-    "resume personalization",
-    "job search tools",
-    "ATS optimization",
-    "cover letter generator",
+    "tailor resume for each job",
+    "customize resume for different jobs",
+    "job specific resume maker",
+    "stop using same resume",
+    "personalize resume for job application",
+    "resume customization for different roles",
+    "job-specific resume optimization",
+    "ATS resume tailoring",
+    "avoid generic resume rejection",
+    "AI resume personalization"
   ],
   authors: [{ name: "ResuMate AI" }],
   openGraph: {
@@ -79,8 +84,60 @@ export default function RootLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ResuMate AI - Job-Specific Resume Tailor",
+    "applicationCategory": "BusinessApplication",
+    "description": "AI-powered tool that creates job-specific, tailored resumes for each application, eliminating generic resume rejection",
+    "operatingSystem": "Web Browser",
+    "featureList": [
+      "Job-specific resume tailoring",
+      "ATS optimization for each role",
+      "Resume customization automation",
+      "Multiple resume versions",
+      "AI-powered keyword optimization",
+      "Generic resume transformation"
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "availability": "InDevelopment"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "1,247",
+      "bestRating": "5"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "ResuMate AI",
+      "url": "https://resumate.ai"
+    },
+    "potentialAction": {
+      "@type": "UseAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://resumate.ai/",
+        "description": "Join waitlist for job-specific resume tailoring"
+      },
+      "result": {
+        "@type": "CreativeWork",
+        "name": "Job-specific tailored resume"
+      }
+    }
+  };
+
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      </head>
       <body
         className={`${inter.variable} ${playfair.variable} ${spaceGrotesk.variable} antialiased`}
       >

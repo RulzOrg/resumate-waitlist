@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Block API routes from crawling
+Disallow: /api/
+
+# Block development files
+Disallow: /_next/
+Disallow: /.next/
+
+# Allow specific important pages
+Allow: /images/
+
+# Sitemap location
+Sitemap: https://resumate.ai/sitemap.xml

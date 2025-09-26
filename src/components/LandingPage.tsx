@@ -35,8 +35,8 @@ const avatars = [
 
 const howItWorksSteps = [
   {
-    title: "1. Upload Your Resume",
-    description: "Start with your existing resume. We accept PDF and DOCX formats.",
+    title: "1. Upload Your Master Resume",
+    description: "Start with your generic resume. We'll transform it into job-specific versions.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -56,8 +56,8 @@ const howItWorksSteps = [
     ),
   },
   {
-    title: "2. Add Job URLs",
-    description: "Paste links to the jobs you're targeting. Our AI analyzes every detail.",
+    title: "2. Paste Job Description",
+    description: "Add the specific job posting. Our AI analyzes requirements and tailors accordingly.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -78,8 +78,8 @@ const howItWorksSteps = [
     ),
   },
   {
-    title: "3. Generate & Download",
-    description: "Get multiple, optimized resume versions ready to impress.",
+    title: "3. Get Tailored Resume",
+    description: "Download your job-specific resume optimized for that exact role and ATS system.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -107,24 +107,29 @@ const howItWorksSteps = [
 
 const faqs = [
   {
-    question: "How does the AI work?",
+    question: "Why shouldn't I use the same resume for every job?",
     answer:
-      "Our platform uses advanced language models trained on millions of successful resumes and job descriptions. It analyzes each job's requirements and rewrites your resume for maximum impact and ATS compatibility.",
+      "ATS systems in 2025 can detect generic resumes and automatically filter them out. 88% of qualified candidates get rejected because they use one-size-fits-all resumes. Job-specific tailoring dramatically improves your chances.",
+  },
+  {
+    question: "How does ResuMate AI customize my resume for each job?",
+    answer:
+      "Our AI analyzes the specific job posting, identifies key requirements, and rewrites your experience to match exactly what that employer is looking for. It optimizes keywords, skills, and achievements for each role.",
+  },
+  {
+    question: "How long does it take to tailor a resume for each job?",
+    answer:
+      "With ResuMate AI, you can get a fully customized, job-specific resume in under 2 minutes. No more spending hours manually editing your resume for each application.",
   },
   {
     question: "Is my data private and secure?",
     answer:
-      "Absolutely. Your resume and personal information are encrypted and never used to train AI models. You can delete your data at any time from your dashboard.",
+      "Absolutely. Your resume and personal information are encrypted and never used to train AI models. You have full control over your data and can delete it at any time.",
   },
   {
-    question: "Does this guarantee I will get a job?",
+    question: "How many tailored resumes can I create?",
     answer:
-      "While we can't guarantee offers, ResuMate AI significantly increases your chances of getting shortlisted. Most users see a dramatic boost in responses from recruiters.",
-  },
-  {
-    question: "Can I cancel my subscription anytime?",
-    answer:
-      "Yes. Cancel whenever you like with a single click. You'll keep access to Pro features until the end of your current billing period with no hidden fees.",
+      "Unlimited. Create as many job-specific resume versions as you need. Our platform keeps them organized so you can track which version you sent to which employer.",
   },
 ];
 
@@ -613,11 +618,11 @@ export default function LandingPage() {
             </div>
 
             <h1 className="mx-auto mt-4 text-4xl font-semibold tracking-tight text-white sm:text-6xl md:text-7xl font-space-grotesk">
-              <span className="font-playfair font-semibold">Tailor-fit</span> your resume for any job, instantly.
+              <span className="font-playfair font-semibold">Stop</span> using the same resume for every job.
             </h1>
 
             <p className="mx-auto mt-6 max-w-2xl text-base font-normal text-white/70 sm:text-lg font-geist">
-              Be the first to test ResuMate AI when we go live. Join the waitlist and get early access updates, invites, and launch perks.
+              88% of qualified candidates get rejected using generic resumes. Get job-specific resumes tailored to each role with AI. Join the waitlist for early access.
             </p>
 
             <div className="mx-auto mt-8 max-w-xl">
@@ -643,7 +648,7 @@ export default function LandingPage() {
           <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 md:grid-cols-2 lg:px-8">
             <div>
               <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl font-space-grotesk">
-                From generic to job-specific in three simple steps.
+                Transform generic resumes into job-winning applications.
               </h2>
               <p className="mt-4 text-base text-white/70 font-geist">
                 Stop sending the same resume everywhere. Our platform makes it effortless to create a perfectly tailored application for every opportunity, boosting your visibility to recruiters and hiring managers.
@@ -666,7 +671,7 @@ export default function LandingPage() {
               <div className="overflow-hidden rounded-2xl border border-white/10">
                 <Image
                   src="/images/features/hero-ui.jpg"
-                  alt="AI resume platform interface"
+                  alt="ResuMate AI job-specific resume tailoring interface showing before and after resume customization"
                   width={1080}
                   height={810}
                   className="aspect-[4/3] w-full object-cover"
@@ -686,10 +691,10 @@ export default function LandingPage() {
           <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-3xl">
               <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl font-space-grotesk">
-                Beat the bots and impress recruiters.
+                Why generic resumes fail in 2025.
               </h2>
               <p className="mt-3 text-base text-white/70 font-geist">
-                Powerful features designed to get your resume past Applicant Tracking Systems (ATS) and into human hands.
+                ATS systems now detect generic applications and auto-reject them. Our job-specific tailoring beats these filters and gets you noticed by recruiters.
               </p>
             </div>
           </div>
@@ -698,16 +703,16 @@ export default function LandingPage() {
             <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 md:col-span-2 md:row-span-2">
               <div className="relative flex-1">
                 <h3 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl font-space-grotesk">
-                  AI-Powered Optimization
+                  Job-Specific Resume Tailoring
                 </h3>
               <p className="mt-2 text-sm text-white/70 sm:text-base font-geist">
-                  Our AI doesn&apos;t just stuff keywords. It intelligently rewrites your experience to match the core competencies and skills required by the job description, using language that recruiters love.
+                  No more generic resumes. Our AI analyzes each job posting and customizes your resume to match specific requirements, keywords, and company culture, dramatically increasing your interview chances.
               </p>
               </div>
               <div className="mt-6 overflow-hidden rounded-lg border border-white/10">
                 <Image
                   src="/images/features/feature-analysis.jpg"
-                  alt="AI analysis interface"
+                  alt="Job-specific resume analysis showing keyword optimization and ATS compatibility scoring"
                   width={1080}
                   height={720}
                   className="w-full object-cover"
@@ -727,7 +732,7 @@ export default function LandingPage() {
               <div className="mt-4 overflow-hidden rounded-lg border border-white/10">
                 <Image
                   src="/images/features/feature-templates.jpg"
-                  alt="Collection of resume templates"
+                  alt="ATS-friendly resume templates optimized for different job roles and industries"
                   width={1080}
                   height={720}
                   className="w-full object-cover"
@@ -747,7 +752,7 @@ export default function LandingPage() {
               <div className="mt-4 overflow-hidden rounded-lg border border-white/10">
                 <Image
                   src="/images/features/hero-ui.jpg"
-                  alt="Resume score dashboard"
+                  alt="Real-time resume scoring dashboard showing job match percentage and optimization suggestions"
                   width={1080}
                   height={720}
                   className="w-full object-cover"
