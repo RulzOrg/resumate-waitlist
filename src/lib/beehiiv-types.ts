@@ -58,7 +58,7 @@ export interface BeehiivErrorResponse {
   error: {
     type: string;
     message: string;
-    details?: Record<string, any>;
+    details?: Record<string, unknown>;
   };
 }
 
@@ -96,7 +96,7 @@ export interface SubscriptionResult {
   error?: {
     type: 'validation' | 'duplicate' | 'api_error' | 'network_error';
     message: string;
-    details?: Record<string, any>;
+    details?: Record<string, unknown>;
   };
 }
 

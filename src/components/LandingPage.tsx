@@ -304,7 +304,7 @@ function WaitlistForm({
             text: "You're on the list! We'll email you as soon as early access opens.",
           });
           setEmail("");
-        } catch (storageError) {
+        } catch {
           setMessage({
             type: "error",
             text: "Connection issue. Please try again in a moment."
@@ -700,9 +700,9 @@ export default function LandingPage() {
                 <h3 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl font-space-grotesk">
                   AI-Powered Optimization
                 </h3>
-                <p className="mt-2 text-sm text-white/70 sm:text-base font-geist">
-                  Our AI doesn't just stuff keywords. It intelligently rewrites your experience to match the core competencies and skills required by the job description, using language that recruiters love.
-                </p>
+              <p className="mt-2 text-sm text-white/70 sm:text-base font-geist">
+                  Our AI doesn&apos;t just stuff keywords. It intelligently rewrites your experience to match the core competencies and skills required by the job description, using language that recruiters love.
+              </p>
               </div>
               <div className="mt-6 overflow-hidden rounded-lg border border-white/10">
                 <Image
@@ -742,7 +742,7 @@ export default function LandingPage() {
                 Instant Resume Score
               </h3>
               <p className="mt-2 text-sm text-white/70 font-geist">
-                Get a real-time score on how well your resume matches a job. Track your improvements and know when it's ready.
+                Get a real-time score on how well your resume matches a job. Track your improvements and know when it&apos;s ready.
               </p>
               <div className="mt-4 overflow-hidden rounded-lg border border-white/10">
                 <Image

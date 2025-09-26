@@ -8,7 +8,6 @@ import {
   SubscriptionResult,
   WaitlistSubscriptionData,
   BeehiivErrorResponse,
-  BEEHIIV_ERROR_TYPES,
   SUCCESS_MESSAGES,
   ERROR_MESSAGES,
 } from '@/lib/beehiiv-types';
