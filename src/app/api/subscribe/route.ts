@@ -121,12 +121,11 @@ async function enrollInAutomation(
     return null;
   }
 
-  const enrollmentData: BeehiivAutomationEnrollmentRequest = {
+  const enrollmentData = {
     email,
-    automation_id: config.automationId,
   };
 
-  const response = await fetch(`https://api.beehiiv.com/v2/automations/enroll`, {
+  const response = await fetch(`https://api.beehiiv.com/v2/publications/${config.publicationId}/automations/${config.automationId}/enroll`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${config.apiKey}`,
@@ -145,7 +144,21 @@ async function enrollInAutomation(
         statusText: response.statusText,
         errorData,
         requestData: enrollmentData,
+        automationId: config.automationId,
+        publicationId: config.publicationId,
+        url: `https://api.beehiiv.com/v2/publications/${config.publicationId}/automations/${config.automationId}/enroll`,
       });
+
+      // Additional suggestions for common issues
+      if (response.status === 404) {
+        console.log('🔧 Automation Enrollment Troubleshooting Tips:');
+        console.log('1. Check if automation ID is correct in Beehiiv dashboard');
+        console.log('2. Verify automation is published (not in draft mode)');
+        console.log('3. Ensure automation has "New Subscriber" trigger');
+        console.log('4. Check if publication ID is correct');
+        console.log(`Current automation ID: ${config.automationId}`);
+        console.log(`Current publication ID: ${config.publicationId}`);
+      }
     }
 
     // Don't throw here - automation enrollment failure shouldn't block subscription
