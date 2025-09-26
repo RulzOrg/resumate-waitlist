@@ -97,6 +97,7 @@ export interface WaitlistSubscriptionData {
   firstName?: string;
   source?: string;
   campaign?: string;
+  medium?: string;
 }
 
 export interface SubscriptionResult {

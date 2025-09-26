@@ -70,10 +70,13 @@ async function subscribeToBeehiiv(
     email: data.email,
     first_name: data.firstName,
     reactivate_existing: true,
-    send_welcome_email: false, // We'll handle this via automation
+    send_welcome_email: true, // ensure welcome/confirmation flow to activate subscriber
+    // Use stable UTM values to target automation entry conditions in Beehiiv
     utm_source: data.source || 'waitlist',
+    utm_medium: data.medium || 'landing',
     utm_campaign: data.campaign || 'resumate-ai-waitlist',
-    referring_site: 'resumate.ai',
+    // Use a stable referring_site so you can add an entry condition in automation
+    referring_site: 'resumate.ai/waitlist',
   };
 
   const response = await fetch(`https://api.beehiiv.com/v2/publications/${config.publicationId}/subscriptions`, {
@@ -171,7 +174,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       );
     }
 
-    const { email, firstName, source, campaign } = body as WaitlistSubscriptionData;
+    const { email, firstName, source, campaign, medium } = body as WaitlistSubscriptionData;
 
     // Validate email format
     if (!emailRegex.test(email)) {
@@ -200,6 +203,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       firstName: firstName?.trim(),
       source,
       campaign,
+      medium,
     });
 
     // Log subscription response in development
@@ -208,7 +212,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     }
 
     // Use the cleaned email for automation enrollment since API response might vary
-    const emailForAutomation = subscription.email || cleanEmail;
+    // Some Beehiiv responses return data under .data
+    const emailForAutomation = subscription.email || (subscription as any)?.data?.email || cleanEmail;
 
     // Attempt to enroll in automation (optional)
     const automationEnrollment = await enrollInAutomation(config, emailForAutomation);
