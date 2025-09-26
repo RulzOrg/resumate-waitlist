@@ -77,6 +77,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  icons: {
+    icon: [
+      { url: "/icon.png", type: "image/png" },
+      { url: "/favicon.ico", type: "image/x-icon" },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -103,13 +109,13 @@ export default function RootLayout({
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD",
-      "availability": "InDevelopment"
+      "availability": "https://schema.org/PreOrder"
     },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "ratingCount": "1,247",
-      "bestRating": "5"
+      "ratingValue": 4.9,
+      "ratingCount": 1247,
+      "bestRating": 5
     },
     "creator": {
       "@type": "Organization",

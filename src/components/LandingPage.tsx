@@ -618,7 +618,7 @@ export default function LandingPage() {
             </div>
 
             <h1 className="mx-auto mt-4 text-4xl font-semibold tracking-tight text-white sm:text-6xl md:text-7xl font-space-grotesk">
-              <span className="font-playfair font-semibold">Stop</span> using the same resume for every job.
+              Stop using the same resume for every job.
             </h1>
 
             <p className="mx-auto mt-6 max-w-2xl text-base font-normal text-white/70 sm:text-lg font-geist">
@@ -751,7 +751,7 @@ export default function LandingPage() {
               </p>
               <div className="mt-4 overflow-hidden rounded-lg border border-white/10">
                 <Image
-                  src="/images/features/hero-ui.jpg"
+                  src="/images/features/instant-resume.jpg"
                   alt="Real-time resume scoring dashboard showing job match percentage and optimization suggestions"
                   width={1080}
                   height={720}
