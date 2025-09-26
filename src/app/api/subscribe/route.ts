@@ -108,63 +108,23 @@ async function subscribeToBeehiiv(
 
 /**
  * Enroll subscriber in Beehiiv automation
+ * Note: Many Beehiiv automations work better with "New Subscriber" triggers
+ * rather than manual API enrollment. Consider setting up automation triggers
+ * in your Beehiiv dashboard instead.
  */
 async function enrollInAutomation(
   config: BeehiivConfig,
   email: string
 ): Promise<BeehiivAutomationEnrollmentResponse | null> {
-  if (!config.automationId) {
-    if (config.isDevelopment) {
-      console.log('No automation ID provided, skipping automation enrollment');
-    }
-    return null;
+  // Manual enrollment via API is not supported for most Beehiiv accounts/public API.
+  // Configure your automation with the "New Subscriber" trigger to auto-enroll on subscription.
+  if (config.isDevelopment && config.automationId) {
+    console.log('Skipping manual automation enrollment. Ensure automation uses "New Subscriber" trigger.', {
+      automationId: config.automationId,
+      publicationId: config.publicationId,
+    });
   }
-
-  const enrollmentData = {
-    email,
-  };
-
-  const response = await fetch(`https://api.beehiiv.com/v2/publications/${config.publicationId}/automations/${config.automationId}/enroll`, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${config.apiKey}`,
-      'Content-Type': 'application/json',
-      'User-Agent': 'ResuMate-AI-Waitlist/1.0',
-    },
-    body: JSON.stringify(enrollmentData),
-  });
-
-  if (!response.ok) {
-    const errorData = await response.json().catch(() => null);
-
-    if (config.isDevelopment) {
-      console.error('Beehiiv automation enrollment error:', {
-        status: response.status,
-        statusText: response.statusText,
-        errorData,
-        requestData: enrollmentData,
-        automationId: config.automationId,
-        publicationId: config.publicationId,
-        url: `https://api.beehiiv.com/v2/publications/${config.publicationId}/automations/${config.automationId}/enroll`,
-      });
-
-      // Additional suggestions for common issues
-      if (response.status === 404) {
-        console.log('🔧 Automation Enrollment Troubleshooting Tips:');
-        console.log('1. Check if automation ID is correct in Beehiiv dashboard');
-        console.log('2. Verify automation is published (not in draft mode)');
-        console.log('3. Ensure automation has "New Subscriber" trigger');
-        console.log('4. Check if publication ID is correct');
-        console.log(`Current automation ID: ${config.automationId}`);
-        console.log(`Current publication ID: ${config.publicationId}`);
-      }
-    }
-
-    // Don't throw here - automation enrollment failure shouldn't block subscription
-    return null;
-  }
-
-  return await response.json();
+  return null;
 }
 
 /**

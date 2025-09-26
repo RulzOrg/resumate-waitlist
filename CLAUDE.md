@@ -140,10 +140,24 @@ When working on this project:
 - Final anticipation building before beta launch
 
 ### Setup Instructions:
+
+#### Option 1: Recommended - Auto-Trigger Setup
 1. Create automation in Beehiiv dashboard named "ResuMate AI Waitlist Sequence"
-2. Design emails with ResuMate AI branding and messaging
-3. Set triggers and delays between emails
-4. Copy automation ID to environment variables
+2. Set trigger to **"New Subscriber"** (this will automatically enroll all new subscribers)
+3. Design emails with ResuMate AI branding and messaging
+4. Set delays between emails (immediate, +3 days, +7 days, etc.)
+5. **Publish** the automation (not draft mode)
+6. Leave `BEEHIIV_AUTOMATION_ID` empty or remove it from `.env.local`
+
+#### Option 2: API-Based Enrollment (Advanced)
+1. Create automation in Beehiiv dashboard named "ResuMate AI Waitlist Sequence"
+2. Set trigger to **"Manual"** or **"API"** (if available)
+3. Design emails with ResuMate AI branding and messaging
+4. **Publish** the automation (not draft mode)
+5. Copy automation ID from URL: `app.beehiiv.com/automations/[AUTOMATION_ID]`
+6. Add `BEEHIIV_AUTOMATION_ID=aut_xxxxx` to `.env.local`
+
+**💡 Recommendation**: Use Option 1 (Auto-Trigger) as it's more reliable and doesn't depend on API endpoint changes.
 
 ## Testing & Monitoring
 
