@@ -117,7 +117,7 @@ async function subscribeToBeehiiv(
  */
 async function enrollInAutomation(
   config: BeehiivConfig,
-  email: string
+  _email: string
 ): Promise<BeehiivAutomationEnrollmentResponse | null> {
   // Manual enrollment via API is not supported for most Beehiiv accounts/public API.
   // Configure your automation with the "New Subscriber" trigger to auto-enroll on subscription.
@@ -213,7 +213,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
     // Use the cleaned email for automation enrollment since API response might vary
     // Some Beehiiv responses return data under .data
-    const emailForAutomation = subscription.email || (subscription as any)?.data?.email || cleanEmail;
+    const emailForAutomation = subscription.email ?? subscription.data?.email ?? cleanEmail;
 
     // Attempt to enroll in automation (optional)
     const automationEnrollment = await enrollInAutomation(config, emailForAutomation);
