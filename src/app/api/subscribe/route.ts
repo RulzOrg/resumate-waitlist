@@ -219,35 +219,47 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     // Get Beehiiv configuration
     const config = getBeehiivConfig();
 
+    // Clean email for API calls
+    const cleanEmail = email.toLowerCase().trim();
+
     // Subscribe to Beehiiv
     const subscription = await subscribeToBeehiiv(config, {
-      email: email.toLowerCase().trim(),
+      email: cleanEmail,
       firstName: firstName?.trim(),
       source,
       campaign,
     });
 
+    // Log subscription response in development
+    if (config.isDevelopment) {
+      console.log('Beehiiv subscription response:', subscription);
+    }
+
+    // Use the cleaned email for automation enrollment since API response might vary
+    const emailForAutomation = subscription.email || cleanEmail;
+
     // Attempt to enroll in automation (optional)
-    const automationEnrollment = await enrollInAutomation(config, subscription.email);
+    const automationEnrollment = await enrollInAutomation(config, emailForAutomation);
 
     // Success response
     const result: SubscriptionResult = {
       success: true,
       message: SUCCESS_MESSAGES.SUBSCRIBED,
       data: {
-        subscriber_id: subscription.id,
+        subscriber_id: subscription.id || subscription.data?.id || 'unknown',
         automation_enrolled: !!automationEnrollment,
-        email: subscription.email,
+        email: emailForAutomation,
       },
     };
 
     // Log success in development
     if (config.isDevelopment) {
       console.log('Successful subscription:', {
-        email: subscription.email,
-        subscriber_id: subscription.id,
+        email: emailForAutomation,
+        subscriber_id: subscription.id || subscription.data?.id,
         automation_enrolled: !!automationEnrollment,
         automation_id: config.automationId,
+        raw_subscription: subscription,
       });
     }
 

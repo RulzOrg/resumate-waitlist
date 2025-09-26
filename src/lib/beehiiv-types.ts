@@ -27,17 +27,31 @@ export interface BeehiivSubscriptionRequest {
 }
 
 export interface BeehiivSubscriptionResponse {
-  id: string;
-  email: string;
-  status: 'active' | 'inactive' | 'pending';
-  created: string;
-  updated: string;
+  id?: string;
+  email?: string;
+  status?: 'active' | 'inactive' | 'pending';
+  created?: string;
+  updated?: string;
   first_name?: string;
   last_name?: string;
   utm_source?: string;
   utm_medium?: string;
   utm_campaign?: string;
   referring_site?: string;
+  // Handle potential nested data structure
+  data?: {
+    id?: string;
+    email?: string;
+    status?: 'active' | 'inactive' | 'pending';
+    created?: string;
+    updated?: string;
+    first_name?: string;
+    last_name?: string;
+    utm_source?: string;
+    utm_medium?: string;
+    utm_campaign?: string;
+    referring_site?: string;
+  };
 }
 
 export interface BeehiivAutomationEnrollmentRequest {
