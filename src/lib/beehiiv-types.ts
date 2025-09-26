@@ -108,7 +108,7 @@ export interface SubscriptionResult {
     email: string;
   };
   error?: {
-    type: 'validation' | 'duplicate' | 'api_error' | 'network_error';
+    type: 'validation' | 'duplicate' | 'api_error' | 'network_error' | 'rate_limit';
     message: string;
     details?: Record<string, unknown>;
   };
