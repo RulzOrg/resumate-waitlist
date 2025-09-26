@@ -882,7 +882,7 @@ export default function LandingPage() {
           </p>
           <div className="flex items-center gap-4">
             <a
-              href="https://twitter.com/resumateai"
+              href="#"
               className="text-white/60 transition hover:text-white"
               aria-label="ResuMate AI on X"
             >
@@ -901,7 +901,7 @@ export default function LandingPage() {
               </svg>
             </a>
             <a
-              href="https://www.linkedin.com/company/resumateai"
+              href="#"
               className="text-white/60 transition hover:text-white"
               aria-label="ResuMate AI on LinkedIn"
             >
