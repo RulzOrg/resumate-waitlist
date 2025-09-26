@@ -160,10 +160,11 @@ async function enrollInAutomation(
  */
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
-    // Get client IP for rate limiting
-    const ip = request.ip ||
-      request.headers.get('x-forwarded-for')?.split(',')[0] ||
-      request.headers.get('x-real-ip') ||
+    // Get client IP for rate limiting (from forwarded headers)
+    const ip =
+      request.headers.get('x-vercel-forwarded-for')?.split(',')[0]?.trim() ||
+      request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+      request.headers.get('x-real-ip')?.trim() ||
       'unknown';
 
     // Check rate limiting
