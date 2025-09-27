@@ -98,6 +98,7 @@ export interface WaitlistSubscriptionData {
   source?: string;
   campaign?: string;
   medium?: string;
+  referringSite?: string;
 }
 
 export interface SubscriptionResult {

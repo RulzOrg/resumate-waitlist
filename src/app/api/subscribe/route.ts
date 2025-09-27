@@ -75,8 +75,8 @@ async function subscribeToBeehiiv(
     utm_source: data.source || 'waitlist',
     utm_medium: data.medium || 'landing',
     utm_campaign: data.campaign || 'resumate-ai-waitlist',
-    // Use a stable referring_site so you can add an entry condition in automation
-    referring_site: 'useresumate.com/waitlist',
+    // Provide the request origin for automation entry conditions
+    referring_site: data.referringSite,
   };
 
   const response = await fetch(`https://api.beehiiv.com/v2/publications/${config.publicationId}/subscriptions`, {
@@ -197,6 +197,13 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     // Clean email for API calls
     const cleanEmail = email.toLowerCase().trim();
 
+    // Derive origin to pass as referring_site for automation conditions
+    const forwardedProto = request.headers.get('x-forwarded-proto')?.split(',')[0]?.trim() || 'https';
+    const hostHeader = request.headers.get('x-forwarded-host')?.split(',')[0]?.trim()
+      || request.headers.get('host')?.trim()
+      || 'resumate.ai';
+    const origin = `${forwardedProto}://${hostHeader}`;
+
     // Subscribe to Beehiiv
     const subscription = await subscribeToBeehiiv(config, {
       email: cleanEmail,
@@ -204,6 +211,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       source,
       campaign,
       medium,
+      referringSite: origin,
     });
 
     // Log subscription response in development
