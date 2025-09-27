@@ -26,11 +26,11 @@ const navLinks = [
 ];
 
 const avatars = [
-  { src: "/images/avatars/avatar-1.jpg", alt: "ResuMate early adopter 1" },
-  { src: "/images/avatars/avatar-2.jpg", alt: "ResuMate early adopter 2" },
-  { src: "/images/avatars/avatar-3.jpg", alt: "ResuMate early adopter 3" },
-  { src: "/images/avatars/avatar-4.jpg", alt: "ResuMate early adopter 4" },
-  { src: "/images/avatars/avatar-5.jpg", alt: "ResuMate early adopter 5" },
+  { src: "/images/avatars/avatar-1.webp", alt: "ResuMate early adopter 1" },
+  { src: "/images/avatars/avatar-2.webp", alt: "ResuMate early adopter 2" },
+  { src: "/images/avatars/avatar-3.webp", alt: "ResuMate early adopter 3" },
+  { src: "/images/avatars/avatar-4.webp", alt: "ResuMate early adopter 4" },
+  { src: "/images/avatars/avatar-5.webp", alt: "ResuMate early adopter 5" },
 ];
 
 const howItWorksSteps = [
@@ -670,7 +670,7 @@ export default function LandingPage() {
             <div className="relative">
               <div className="overflow-hidden rounded-2xl border border-white/10">
                 <Image
-                  src="/images/features/hero-ui.jpg"
+                  src="/images/features/hero-ui.webp"
                   alt="ResuMate AI job-specific resume tailoring interface showing before and after resume customization"
                   width={1080}
                   height={810}
@@ -711,7 +711,7 @@ export default function LandingPage() {
               </div>
               <div className="mt-6 overflow-hidden rounded-lg border border-white/10">
                 <Image
-                  src="/images/features/feature-analysis.jpg"
+                  src="/images/features/feature-analysis.webp"
                   alt="Job-specific resume analysis showing keyword optimization and ATS compatibility scoring"
                   width={1080}
                   height={720}
@@ -731,7 +731,7 @@ export default function LandingPage() {
               </p>
               <div className="mt-4 overflow-hidden rounded-lg border border-white/10">
                 <Image
-                  src="/images/features/feature-templates.jpg"
+                  src="/images/features/feature-templates.webp"
                   alt="ATS-friendly resume templates optimized for different job roles and industries"
                   width={1080}
                   height={720}
@@ -751,7 +751,7 @@ export default function LandingPage() {
               </p>
               <div className="mt-4 overflow-hidden rounded-lg border border-white/10">
                 <Image
-                  src="/images/features/instant-resume.jpg"
+                  src="/images/features/instant-resume.webp"
                   alt="Real-time resume scoring dashboard showing job match percentage and optimization suggestions"
                   width={1080}
                   height={720}

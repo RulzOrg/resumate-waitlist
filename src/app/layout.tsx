@@ -6,6 +6,7 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import { ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -33,7 +34,7 @@ const description =
   "88% of qualified candidates get rejected using generic resumes. ResuMate AI creates job-specific resumes tailored to each role, beating ATS filters and increasing interview rates by 3x.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://resumate.ai"),
+  metadataBase: new URL("https://useresumate.com"),
   title: {
     default: title,
     template: "%s | ResuMate AI",
@@ -55,15 +56,15 @@ export const metadata: Metadata = {
   openGraph: {
     title,
     description,
-    url: "https://resumate.ai",
+    url: "https://useresumate.com",
     siteName: "ResuMate AI",
     type: "website",
     images: [
       {
-        url: "/images/features/hero-ui.jpg",
-        width: 1080,
-        height: 810,
-        alt: "Preview of the ResuMate AI resume tailoring interface",
+        url: "/images/og-image.webp",
+        width: 1200,
+        height: 630,
+        alt: "ResuMate AI - Stop using the same resume for every job. AI-powered job-specific resume tailoring that beats ATS filters and increases interview rates by 3x.",
       },
     ],
   },
@@ -72,7 +73,7 @@ export const metadata: Metadata = {
     title,
     description,
     creator: "@resumateai",
-    images: ["/images/features/hero-ui.jpg"],
+    images: ["/images/twitter-image.webp"],
   },
   alternates: {
     canonical: "/",
@@ -120,13 +121,13 @@ export default function RootLayout({
     "creator": {
       "@type": "Organization",
       "name": "ResuMate AI",
-      "url": "https://resumate.ai"
+      "url": "https://useresumate.com"
     },
     "potentialAction": {
       "@type": "UseAction",
       "target": {
         "@type": "EntryPoint",
-        "urlTemplate": "https://resumate.ai/",
+        "urlTemplate": "https://useresumate.com/",
         "description": "Join waitlist for job-specific resume tailoring"
       },
       "result": {
@@ -148,6 +149,7 @@ export default function RootLayout({
         className={`${inter.variable} ${playfair.variable} ${spaceGrotesk.variable} antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );

@@ -10,4 +10,4 @@ Disallow: /api/
 Allow: /images/
 
 # Sitemap location
-Sitemap: https://resumate.ai/sitemap.xml
+Sitemap: https://useresumate.com/sitemap.xml

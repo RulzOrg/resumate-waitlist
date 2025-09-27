@@ -76,7 +76,7 @@ async function subscribeToBeehiiv(
     utm_medium: data.medium || 'landing',
     utm_campaign: data.campaign || 'resumate-ai-waitlist',
     // Use a stable referring_site so you can add an entry condition in automation
-    referring_site: 'resumate.ai/waitlist',
+    referring_site: 'useresumate.com/waitlist',
   };
 
   const response = await fetch(`https://api.beehiiv.com/v2/publications/${config.publicationId}/subscriptions`, {

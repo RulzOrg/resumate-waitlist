@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Images Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f3f4f6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .image-container {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .image-container h2 {
+            color: #374151;
+            margin-bottom: 20px;
+        }
+        svg {
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            background: white;
+        }
+        .instructions {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #3b82f6;
+        }
+        .download-btn {
+            background: #3b82f6;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 10px;
+            font-size: 14px;
+        }
+        .download-btn:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="instructions">
+            <h1>ResuMate AI Social Media Images</h1>
+            <p><strong>Instructions:</strong></p>
+            <ol>
+                <li>Right-click on each image below</li>
+                <li>Select "Save Image As..." or "Copy Image"</li>
+                <li>Save as PNG with the appropriate filename</li>
+                <li>Use og-image.png (1200x630) for OpenGraph</li>
+                <li>Use twitter-image.png (1200x675) for Twitter Cards</li>
+            </ol>
+            <p><em>Alternative: Take a screenshot of each image area for PNG conversion.</em></p>
+        </div>
+
+        <div class="image-container">
+            <h2>OpenGraph Image (1200×630px)</h2>
+            <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Background Gradient -->
+                <defs>
+                    <linearGradient id="bgGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#0F172A;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#1E293B;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#334155;stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="accentGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#6366F1;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+
+                <!-- Background -->
+                <rect width="1200" height="630" fill="url(#bgGradient1)"/>
+
+                <!-- Decorative Elements -->
+                <circle cx="1100" cy="100" r="100" fill="#1E293B" opacity="0.3"/>
+                <circle cx="150" cy="550" r="80" fill="#1E293B" opacity="0.2"/>
+
+                <!-- Main Content Area -->
+                <rect x="80" y="120" width="1040" height="390" rx="12" fill="#FFFFFF" opacity="0.02"/>
+
+                <!-- Logo/Brand Area -->
+                <text x="100" y="180" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="32" font-weight="700" fill="#FFFFFF">ResuMate AI</text>
+
+                <!-- Main Headline -->
+                <text x="100" y="240" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="48" font-weight="800" fill="#FFFFFF">Stop Using The Same</text>
+                <text x="100" y="300" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="48" font-weight="800" fill="url(#accentGradient1)">Resume For Every Job</text>
+
+                <!-- Subtext -->
+                <text x="100" y="350" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="24" font-weight="400" fill="#CBD5E1">AI-powered job-specific resume tailoring</text>
+                <text x="100" y="385" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="24" font-weight="400" fill="#CBD5E1">Beat ATS filters • 3x more interviews</text>
+
+                <!-- CTA Badge -->
+                <rect x="100" y="430" width="200" height="50" rx="25" fill="url(#accentGradient1)"/>
+                <text x="200" y="460" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="600" fill="#FFFFFF" text-anchor="middle">Join Waitlist</text>
+
+                <!-- Domain -->
+                <text x="1100" y="580" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="20" font-weight="500" fill="#64748B" text-anchor="end">useresumate.com</text>
+
+                <!-- Visual Elements -->
+                <g transform="translate(750, 200)">
+                    <!-- Generic Resume (Crossed Out) -->
+                    <rect x="0" y="0" width="120" height="160" rx="8" fill="#EF4444" opacity="0.1" stroke="#EF4444" stroke-width="2"/>
+                    <rect x="15" y="20" width="90" height="8" rx="4" fill="#EF4444" opacity="0.3"/>
+                    <rect x="15" y="40" width="70" height="6" rx="3" fill="#EF4444" opacity="0.3"/>
+                    <rect x="15" y="55" width="80" height="6" rx="3" fill="#EF4444" opacity="0.3"/>
+                    <line x1="10" y1="10" x2="130" y2="150" stroke="#EF4444" stroke-width="4"/>
+                    <line x1="130" y1="10" x2="10" y2="150" stroke="#EF4444" stroke-width="4"/>
+
+                    <!-- Arrow -->
+                    <path d="M150 80 L190 80 M180 70 L190 80 L180 90" stroke="#3B82F6" stroke-width="3" fill="none"/>
+
+                    <!-- Tailored Resumes -->
+                    <rect x="220" y="0" width="80" height="120" rx="6" fill="#10B981" opacity="0.1" stroke="#10B981" stroke-width="2"/>
+                    <rect x="230" y="15" width="60" height="6" rx="3" fill="#10B981" opacity="0.6"/>
+                    <rect x="230" y="30" width="50" height="4" rx="2" fill="#10B981" opacity="0.4"/>
+
+                    <rect x="320" y="20" width="80" height="120" rx="6" fill="#3B82F6" opacity="0.1" stroke="#3B82F6" stroke-width="2"/>
+                    <rect x="330" y="35" width="60" height="6" rx="3" fill="#3B82F6" opacity="0.6"/>
+                    <rect x="330" y="50" width="50" height="4" rx="2" fill="#3B82F6" opacity="0.4"/>
+
+                    <rect x="270" y="40" width="80" height="120" rx="6" fill="#8B5CF6" opacity="0.1" stroke="#8B5CF6" stroke-width="2"/>
+                    <rect x="280" y="55" width="60" height="6" rx="3" fill="#8B5CF6" opacity="0.6"/>
+                    <rect x="280" y="70" width="50" height="4" rx="2" fill="#8B5CF6" opacity="0.4"/>
+                </g>
+            </svg>
+            <br>
+            <button class="download-btn" onclick="downloadSVG('og-image', this.parentElement.querySelector('svg'))">Download as SVG</button>
+        </div>
+
+        <div class="image-container">
+            <h2>Twitter Image (1200×675px)</h2>
+            <svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Background Gradient -->
+                <defs>
+                    <linearGradient id="bgGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#0F172A;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#1E293B;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#334155;stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="accentGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#6366F1;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+
+                <!-- Background -->
+                <rect width="1200" height="675" fill="url(#bgGradient2)"/>
+
+                <!-- Decorative Elements -->
+                <circle cx="1100" cy="120" r="100" fill="#1E293B" opacity="0.3"/>
+                <circle cx="150" cy="580" r="80" fill="#1E293B" opacity="0.2"/>
+
+                <!-- Main Content Area -->
+                <rect x="80" y="140" width="1040" height="420" rx="12" fill="#FFFFFF" opacity="0.02"/>
+
+                <!-- Logo/Brand Area -->
+                <text x="100" y="200" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="32" font-weight="700" fill="#FFFFFF">ResuMate AI</text>
+
+                <!-- Main Headline -->
+                <text x="100" y="260" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="48" font-weight="800" fill="#FFFFFF">Stop Using The Same</text>
+                <text x="100" y="320" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="48" font-weight="800" fill="url(#accentGradient2)">Resume For Every Job</text>
+
+                <!-- Subtext -->
+                <text x="100" y="370" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="24" font-weight="400" fill="#CBD5E1">AI-powered job-specific resume tailoring</text>
+                <text x="100" y="405" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="24" font-weight="400" fill="#CBD5E1">Beat ATS filters • 3x more interviews</text>
+
+                <!-- CTA Badge -->
+                <rect x="100" y="450" width="200" height="50" rx="25" fill="url(#accentGradient2)"/>
+                <text x="200" y="480" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="600" fill="#FFFFFF" text-anchor="middle">Join Waitlist</text>
+
+                <!-- Domain -->
+                <text x="1100" y="620" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="20" font-weight="500" fill="#64748B" text-anchor="end">useresumate.com</text>
+
+                <!-- Visual Elements -->
+                <g transform="translate(750, 220)">
+                    <!-- Generic Resume (Crossed Out) -->
+                    <rect x="0" y="0" width="120" height="160" rx="8" fill="#EF4444" opacity="0.1" stroke="#EF4444" stroke-width="2"/>
+                    <rect x="15" y="20" width="90" height="8" rx="4" fill="#EF4444" opacity="0.3"/>
+                    <rect x="15" y="40" width="70" height="6" rx="3" fill="#EF4444" opacity="0.3"/>
+                    <rect x="15" y="55" width="80" height="6" rx="3" fill="#EF4444" opacity="0.3"/>
+                    <line x1="10" y1="10" x2="130" y2="150" stroke="#EF4444" stroke-width="4"/>
+                    <line x1="130" y1="10" x2="10" y2="150" stroke="#EF4444" stroke-width="4"/>
+
+                    <!-- Arrow -->
+                    <path d="M150 80 L190 80 M180 70 L190 80 L180 90" stroke="#3B82F6" stroke-width="3" fill="none"/>
+
+                    <!-- Tailored Resumes -->
+                    <rect x="220" y="0" width="80" height="120" rx="6" fill="#10B981" opacity="0.1" stroke="#10B981" stroke-width="2"/>
+                    <rect x="230" y="15" width="60" height="6" rx="3" fill="#10B981" opacity="0.6"/>
+                    <rect x="230" y="30" width="50" height="4" rx="2" fill="#10B981" opacity="0.4"/>
+
+                    <rect x="320" y="20" width="80" height="120" rx="6" fill="#3B82F6" opacity="0.1" stroke="#3B82F6" stroke-width="2"/>
+                    <rect x="330" y="35" width="60" height="6" rx="3" fill="#3B82F6" opacity="0.6"/>
+                    <rect x="330" y="50" width="50" height="4" rx="2" fill="#3B82F6" opacity="0.4"/>
+
+                    <rect x="270" y="40" width="80" height="120" rx="6" fill="#8B5CF6" opacity="0.1" stroke="#8B5CF6" stroke-width="2"/>
+                    <rect x="280" y="55" width="60" height="6" rx="3" fill="#8B5CF6" opacity="0.6"/>
+                    <rect x="280" y="70" width="50" height="4" rx="2" fill="#8B5CF6" opacity="0.4"/>
+                </g>
+
+                <!-- Twitter-specific elements -->
+                <text x="100" y="580" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="500" fill="#64748B">88% of qualified candidates get rejected using generic resumes</text>
+            </svg>
+            <br>
+            <button class="download-btn" onclick="downloadSVG('twitter-image', this.parentElement.querySelector('svg'))">Download as SVG</button>
+        </div>
+    </div>
+
+    <script>
+        function downloadSVG(filename, svgElement) {
+            const svgData = new XMLSerializer().serializeToString(svgElement);
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+
+            img.onload = function() {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+
+                canvas.toBlob(function(blob) {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = filename + '.png';
+                    a.click();
+                    URL.revokeObjectURL(url);
+                });
+            };
+
+            img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
+        }
+    </script>
+</body>
+</html>
